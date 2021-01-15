@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:appp/page/splash/splash_page.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MainPage(),
+      home: SplashPage(),
       localizationsDelegates: [
         // <-- 添加
         GlobalMaterialLocalizations.delegate,

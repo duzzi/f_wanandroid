@@ -2,7 +2,8 @@ import 'dart:ui';
 
 import 'package:appp/global/app_const.dart';
 import 'package:appp/manager/account_manager.dart';
-import 'package:appp/page/mine/web_example_page.dart';
+import 'example/permission_example.dart';
+import 'file:///E:/FlutterProjects/f_wanandroid/lib/page/mine/example/web_example_page.dart';
 import 'package:appp/page/setting/setting_page.dart';
 import 'package:appp/utils/route_helper.dart';
 import 'package:appp/utils/toast_utils.dart';
@@ -170,6 +171,10 @@ class _MyPageState extends State<MinePage> with WidgetsBindingObserver {
 
     list.add(buildItemWidget("WebViewExample", Icons.web,() {
       RouteHelper.openPage(context, WebViewExample());
+    }));
+
+    list.add(buildItemWidget("PermissionPage", Icons.lock_open,() {
+      RouteHelper.openPage(context, PermissionPage());
     }));
     for (int i = 0; i < 20; i++) {
       list.add(buildItemWidget("item $i",Icons.android_outlined, () {}));
