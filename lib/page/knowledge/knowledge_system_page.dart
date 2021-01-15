@@ -1,11 +1,15 @@
 import 'package:appp/api/api_service.dart';
+import 'package:appp/bean/article/article_type.dart';
 import 'package:appp/bean/knowledge/knowledge_system_model.dart';
 import 'package:appp/bean/knowledge/knowledge_system_response.dart';
+import 'package:appp/page/project/article_list_page.dart';
 import 'package:appp/page/widget/flow_item_widget.dart';
 import 'package:appp/page/widget/refresh_header_footer.dart';
-import 'package:appp/utils/toast_utils.dart';
+import 'package:appp/utils/route_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+
+import 'knowledge_system_article_page.dart';
 
 class KnowledgeSystemPage extends StatefulWidget {
   @override
@@ -13,7 +17,6 @@ class KnowledgeSystemPage extends StatefulWidget {
 }
 
 class _KnowledgeSystemPageState extends State<KnowledgeSystemPage> {
-  List<Widget> _widgetList = [];
   List<KnowledgeSystemModel> _datas = [];
 
   @override
@@ -34,7 +37,8 @@ class _KnowledgeSystemPageState extends State<KnowledgeSystemPage> {
         header: buildClassicalHeader(),
         slivers: [
           SliverList(
-              delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
+              delegate:
+                  SliverChildBuilderDelegate((BuildContext context, int index) {
             var value = _datas[index];
             return Padding(
               padding: const EdgeInsets.fromLTRB(16, 12, 16, 10),
@@ -46,7 +50,9 @@ class _KnowledgeSystemPageState extends State<KnowledgeSystemPage> {
                     child: Text(value.name),
                   ),
                   Wrap(
-                    children: value.children == null ? [] : createFlowItem(value.children),
+                    children: value.children == null
+                        ? []
+                        : createFlowItem(value.children),
                     spacing: 16,
                     runSpacing: 10,
                   )
@@ -62,7 +68,8 @@ class _KnowledgeSystemPageState extends State<KnowledgeSystemPage> {
 
   void requestData() async {
     ApiService.getKnowledgeSystem().then((value) {
-      KnowledgeSystemResponse response = KnowledgeSystemResponse.fromJson(value.data);
+      KnowledgeSystemResponse response =
+          KnowledgeSystemResponse.fromJson(value.data);
       if (response != null) {
         List<KnowledgeSystemModel> datas = response.data;
         if (datas != null && datas.isNotEmpty) {
@@ -79,7 +86,8 @@ class _KnowledgeSystemPageState extends State<KnowledgeSystemPage> {
     return children
         .map((e) => Ink(
               decoration: BoxDecoration(
-                  color: Colors.blue, borderRadius: BorderRadius.all(Radius.circular(30))),
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.all(Radius.circular(30))),
               child: InkWell(
                 child: Container(
                   child: FlowItem('${e.name}'),
@@ -87,7 +95,12 @@ class _KnowledgeSystemPageState extends State<KnowledgeSystemPage> {
                 ),
                 borderRadius: BorderRadius.all(Radius.circular(30)),
                 onTap: () {
-                  showToast('${e.id}');
+                  RouteHelper.openPage(
+                      context,
+                      KnowledgeSystemArticlePage(
+                        id: e.id,
+                        keyword: e.name,
+                      ));
                 },
               ),
             ))

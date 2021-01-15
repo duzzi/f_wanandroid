@@ -7,10 +7,10 @@ part 'article_item.g.dart';
 class ArticleItem {
   String apkLink;
   int audit;
-  String author;
+  String author = "";
   bool canEdit;
   int chapterId;
-  String chapterName;
+  String chapterName = "";
   bool collect;
   int courseId;
   String desc;
@@ -22,15 +22,16 @@ class ArticleItem {
   String niceDate;
   String niceShareDate;
   String origin;
+  int originId;
   String prefix;
   String projectLink;
   int publishTime;
   int realSuperChapterId;
   int selfVisible;
   int shareDate;
-  String shareUser;
+  String shareUser = "";
   int superChapterId;
-  String superChapterName;
+  String superChapterName = "";
   List<ArticleTag> tags;
   String title;
   int type;
@@ -56,6 +57,7 @@ class ArticleItem {
       this.niceDate,
       this.niceShareDate,
       this.origin,
+      this.originId,
       this.prefix,
       this.projectLink,
       this.publishTime,

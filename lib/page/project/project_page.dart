@@ -3,7 +3,7 @@ import 'package:appp/bean/article/article_type.dart';
 import 'package:appp/bean/project/project_type_item.dart';
 import 'package:appp/bean/project/project_type_response.dart';
 import 'package:appp/global/app_const.dart';
-import 'package:appp/page/project/project_list_page.dart';
+import 'package:appp/page/project/article_list_page.dart';
 import 'package:appp/utils/string_util.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +13,8 @@ class ProjectPage extends StatefulWidget {
   _ProjectPageState createState() => _ProjectPageState();
 }
 
-class _ProjectPageState extends State<ProjectPage> with TickerProviderStateMixin {
+class _ProjectPageState extends State<ProjectPage>
+    with TickerProviderStateMixin {
   List<Widget> _tabWidgets = [];
   List<ProjectTypeItem> _tabItems = [];
   TabController _controller;
@@ -64,7 +65,7 @@ class _ProjectPageState extends State<ProjectPage> with TickerProviderStateMixin
   List<Widget> buildPage() {
     List<Widget> list = [];
     for (var value in _tabItems) {
-      list.add(ArticleListPage(ArticleType.project, value.id));
+      list.add(ArticleListPage(ArticleType.project, id: value.id));
     }
     return list;
   }

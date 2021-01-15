@@ -41,26 +41,3 @@ class LoadingDialog extends Dialog {
     );
   }
 }
-
-bool _isShow = false;
-
-void showLoadingDialog(BuildContext context, {String text}) {
-  if (!_isShow) {
-    showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext context) {
-          return new LoadingDialog(
-            text: text == null ? "loading" : text,
-          );
-        });
-    _isShow = true;
-  }
-}
-
-void dismissLoadingDialog(BuildContext context) {
-  if (_isShow) {
-    Navigator.of(context).pop();
-    _isShow = false;
-  }
-}

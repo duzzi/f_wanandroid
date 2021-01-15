@@ -31,12 +31,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'f_wan',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MainPage(title: 'Flutter Demo Home Page'),
+      home: MainPage(),
       localizationsDelegates: [
         // <-- 添加
         GlobalMaterialLocalizations.delegate,
@@ -49,3 +49,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+

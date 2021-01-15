@@ -7,6 +7,7 @@ class Sp {
   static final String keyUserName = "key_username";
   static final String keyPassword = "key_password";
   static final String keyAccountInfo = "key_account_info";
+  static final String keySearchHistory = "key_search_history";
 
   static void putExpire(int expire) {
     SpUtil.putInt(keyExpire, expire);
@@ -17,10 +18,12 @@ class Sp {
   }
 
   static void putCookies(String cookies) {
+    LogUtil.v("putCookies $cookies");
     SpUtil.putString(keyCookies, cookies);
   }
 
   static String getCookies() {
+    LogUtil.v("getCookies ${SpUtil.getString(keyCookies)}");
     return SpUtil.getString(keyCookies);
   }
 
@@ -50,12 +53,38 @@ class Sp {
     Map map = SpUtil.getObject(keyAccountInfo);
     if (map == null) return null;
     try {
-      print('Sp.getAccountInfo SpUtil.getObject(keyAccountInfo) $map');
+      LogUtil.v('Sp.getAccountInfo SpUtil.getObject(keyAccountInfo) $map');
       accountInfo = AccountInfo.fromJson(map);
       print('Sp.getAccountInfo $accountInfo');
     } catch (e) {
       print(e);
     }
     return accountInfo;
+  }
+
+  static void putSearchHistory(String word) {
+    if (TextUtil.isEmpty(word)) {
+      return;
+    }
+    print('Sp.putSearchHistory $word');
+    List<String> list = getSearchHistory();
+    if (list == null || list.isEmpty) {
+      list = [word];
+    } else {
+      if (list.contains(word)) {
+        list.remove(word);
+      }
+      list.insert(0, word);
+    }
+    SpUtil.putStringList(keySearchHistory, list);
+  }
+
+  static void clearSearchHistory() {
+    SpUtil.putStringList(keySearchHistory, null);
+  }
+
+  static List<String> getSearchHistory() {
+    print('Sp.getSearchHistory ${SpUtil.getStringList(keySearchHistory)}');
+    return SpUtil.getStringList(keySearchHistory);
   }
 }

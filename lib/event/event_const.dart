@@ -1,0 +1,1 @@
+final String collectEvent = "collectEvent";

@@ -1,6 +1,5 @@
 import 'package:appp/bean/base/base_entity.dart';
 import 'package:appp/bean/knowledge/knowledge_system_model.dart';
-import 'package:appp/bean/wechat/wechat_chapter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'knowledge_system_response.g.dart';

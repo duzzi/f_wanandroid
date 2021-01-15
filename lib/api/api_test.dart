@@ -1,22 +1,16 @@
 
 
+import 'package:dio/dio.dart';
+
+import 'api_url.dart';
+
 void main() {
-  var student = new Student("Tom");
-  print(student.name);
-}
-
-class Person {
-  String name;
-
-  Person(this.name);
-
-  Person.withName(this.name);
-}
-
-class Student extends Person {
-  int age;
-
-  Student(String name) : super(name);
-
-  // Student(String name) : super.withName(name);
+  Dio dio = Dio(BaseOptions(
+    baseUrl: "https://www.wanandroid.com/",
+    connectTimeout: 5000,
+    receiveTimeout: 3000,
+  ));
+  dio.get(ApiUrl.homeBanner).then((value) {
+    print('$value');
+  });
 }

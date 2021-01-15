@@ -1,14 +1,16 @@
 import 'dart:ui';
 
-import 'package:appp/bean/login/account_info.dart';
 import 'package:appp/global/app_const.dart';
 import 'package:appp/manager/account_manager.dart';
+import 'package:appp/page/mine/web_example_page.dart';
 import 'package:appp/page/setting/setting_page.dart';
 import 'package:appp/utils/route_helper.dart';
 import 'package:appp/utils/toast_utils.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+
+import 'my_collection_list.dart';
 
 class MinePage extends StatefulWidget {
   @override
@@ -136,7 +138,9 @@ class _MyPageState extends State<MinePage> with WidgetsBindingObserver {
                   child: CircleAvatar(
                     radius: 36.0,
                     backgroundImage: AssetImage(
-                      isLogin() ? "assets/images/temp.png" : "assets/images/avatar_default.png",
+                      isLogin()
+                          ? "assets/images/temp.png"
+                          : "assets/images/avatar_default.png",
                     ),
                   ),
                 ),
@@ -147,41 +151,46 @@ class _MyPageState extends State<MinePage> with WidgetsBindingObserver {
       ),
       SliverFixedExtentList(
         itemExtent: 48,
-        delegate: SliverChildListDelegate(children()),
+        delegate: SliverChildListDelegate(childrenItem()),
       ),
     ]);
   }
 
   bool isLogin() => AccountManager.getInstance().isLogin();
 
-  List<Widget> children() {
+  List<Widget> childrenItem() {
     List<Widget> list = [];
+    list.add(buildItemWidget('我的收藏',Icons.favorite, () {
+      if (!isLogin()) {
+        RouteHelper.openLoginPage(context);
+        return;
+      }
+      RouteHelper.openPage(context, MyCollectionListPage());
+    }));
+
+    list.add(buildItemWidget("WebViewExample", Icons.web,() {
+      RouteHelper.openPage(context, WebViewExample());
+    }));
     for (int i = 0; i < 20; i++) {
-      list.add(buildItemWidget());
+      list.add(buildItemWidget("item $i",Icons.android_outlined, () {}));
     }
     return list;
   }
 
-  Widget buildItemWidget() {
+  Widget buildItemWidget(String text, IconData iconData, Function f) {
     return Ink(
       child: InkWell(
-        onTap: () {
-          showToast('dfdsfdsf');
-        },
+        onTap: f,
         child: Container(
           padding: const EdgeInsets.fromLTRB(14, 8, 8, 14),
-          // color: Colors.white,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
-                Icons.favorite,
-                color: Theme.of(context).primaryColor,
-              ),
+              Icon(iconData),
               Expanded(
                   child: Padding(
                 padding: const EdgeInsets.only(left: 8),
-                child: Text('我的收藏'),
+                child: Text(text),
               )),
               Icon(Icons.keyboard_arrow_right),
             ],

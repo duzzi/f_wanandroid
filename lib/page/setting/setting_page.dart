@@ -1,8 +1,7 @@
 import 'package:appp/api/api_service.dart';
 import 'package:appp/global/app_const.dart';
 import 'package:appp/manager/account_manager.dart';
-import 'package:appp/page/widget/loading_dialog.dart';
-import 'package:appp/utils/toast_utils.dart';
+import 'package:appp/page/base/base_state.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +10,7 @@ class SettingPage extends StatefulWidget {
   _SettingPageState createState() => _SettingPageState();
 }
 
-class _SettingPageState extends State<SettingPage> {
+class _SettingPageState extends BaseState<SettingPage> {
   bool _isLogin = false;
 
   @override
@@ -49,7 +48,7 @@ class _SettingPageState extends State<SettingPage> {
                     ),
                     borderRadius: BorderRadius.all(Radius.circular(30)),
                     onTap: () {
-                      showLoadingDialog(context, text: "登录中...");
+                      showLoadingDialog(context, text: "退出登录中...");
                       ApiService.logout((success, value) {
                         LogUtil.v('退出登录 $success');
                         dismissLoadingDialog(context);

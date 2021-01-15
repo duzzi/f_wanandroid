@@ -14,7 +14,6 @@ import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 class HomePage extends StatefulWidget {
@@ -124,9 +123,9 @@ class HomePageStatefulWidget extends BaseState<HomePage> {
   SliverGrid buildGrid() {
     return SliverGrid(
       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-        maxCrossAxisExtent: 70,
-        mainAxisSpacing: 10.0,
-        crossAxisSpacing: 20.0,
+        maxCrossAxisExtent: 100,
+        mainAxisSpacing: 0.0,
+        crossAxisSpacing: 10.0,
         // childAspectRatio: 4.0,
       ),
       delegate: SliverChildBuilderDelegate(
@@ -136,16 +135,20 @@ class HomePageStatefulWidget extends BaseState<HomePage> {
             child: InkWell(
               child: Center(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Icon(Icons.adb),
                     ),
-                    Text(
-                      '${item.name}',
-                      maxLines: 1,
-                      style: TextStyle(),
-                      overflow: TextOverflow.ellipsis,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 4,right: 4),
+                      child: Text(
+                        '${item.name}',
+                        maxLines: 1,
+                        style: TextStyle(),
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     )
                   ],
                 ),
@@ -196,8 +199,6 @@ class HomePageStatefulWidget extends BaseState<HomePage> {
     ]));
   }
 
-
-
   Container buildHeader() {
     return Container(
       height: Utils.navigationBarHeight,
@@ -209,7 +210,8 @@ class HomePageStatefulWidget extends BaseState<HomePage> {
           title: Visibility(
             child: Ink(
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(25.0)), color: Colors.grey[200]),
+                  borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                  color: Colors.grey[200]),
               child: InkWell(
                 borderRadius: BorderRadius.circular(25.0),
                 // highlightColor: Colors.transparent,

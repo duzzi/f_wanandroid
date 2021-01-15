@@ -15,13 +15,14 @@ class ArticleItemWidget extends StatelessWidget {
     return Card(
       elevation: 5.0,
       shadowColor: Colors.grey[200],
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15.0))),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(15.0))),
       child: Container(
         child: Ink(
           child: InkWell(
             borderRadius: BorderRadius.circular(15),
             onTap: () {
-              RouteHelper.openWebViewPage(context, _item.title, _item.link);
+              RouteHelper.openWebViewPage(context, _item.title, _item.link,articleItem: _item);
             },
             child: Padding(
               padding: const EdgeInsets.all(12.0),
@@ -48,54 +49,57 @@ class ArticleItemWidget extends StatelessWidget {
 
   Expanded buildTitleDesc() {
     return Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        strClean(_item.title),
-                        style: TextStyle(color: Colors.black87, fontSize: 15),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      Padding(
-                        padding: _item.desc.isEmpty
-                            ? EdgeInsets.zero
-                            : const EdgeInsets.only(top: 6, bottom: 6),
-                        child: Text(
-                          strClean(_item.desc),
-                          style: TextStyle(color: Colors.grey[500]),
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ],
-                  ),
-                );
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            strClean(_item.title),
+            style: TextStyle(color: Colors.black87, fontSize: 15),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          Padding(
+            padding: _item.desc.isEmpty
+                ? EdgeInsets.zero
+                : const EdgeInsets.only(top: 6, bottom: 6),
+            child: Text(
+              strClean(_item.desc),
+              style: TextStyle(color: Colors.grey[500]),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
-  Offstage buildPic() {
-    return Offstage(
-                  offstage: TextUtil.isEmpty(_item.envelopePic),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left:8.0),
-                    child: CachedNetworkImage(
-                      imageUrl: _item.envelopePic,
-                      progressIndicatorBuilder: (context, url, progress) => Center(
-                        child: SizedBox(
-                          child: CircularProgressIndicator(
-                            value: progress.progress,
-                            strokeWidth: 2,
-                          ),
-                          height: 20,
-                          width: 20,
-                        ),
-                      ),
-                      errorWidget: (context, url, error) => Icon(Icons.error),
-                      width: 64,
-                      height: 96,
-                    ),
+  Widget buildPic() {
+    bool hasPic = !TextUtil.isEmpty(_item.envelopePic);
+    return !hasPic
+        ? Container(
+            width: 0,
+            height: 0,
+          )
+        : Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: CachedNetworkImage(
+              imageUrl: _item.envelopePic,
+              progressIndicatorBuilder: (context, url, progress) => Center(
+                child: SizedBox(
+                  child: CircularProgressIndicator(
+                    value: progress.progress,
+                    strokeWidth: 2,
                   ),
-                );
+                  height: 20,
+                  width: 20,
+                ),
+              ),
+              errorWidget: (context, url, error) => Icon(Icons.error),
+              width: 64,
+              height: 96,
+            ),
+          );
   }
 
   Row buildBottomRow() {
@@ -124,7 +128,7 @@ class ArticleItemWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 6),
           child: Text(
-            _item.superChapterName,
+            _item.superChapterName == null ? "" : _item.superChapterName,
             style: buildBottomTextStyle(),
           ),
         ),
@@ -132,7 +136,9 @@ class ArticleItemWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(right: 8.0),
           child: Text(
-            _item.author.isEmpty ? _item.shareUser : _item.author,
+            _item.author == null
+                ? (_item.shareUser == null ? "" : _item.shareUser)
+                : (_item.author),
             style: buildBottomTextStyle(),
           ),
         ),
@@ -150,7 +156,7 @@ class ArticleItemWidget extends StatelessWidget {
               width: 2,
             ),
             Text(
-              _item.niceDate,
+              _item.niceDate == null ? "" : _item.niceDate,
               style: buildBottomTextStyle(),
             ),
           ],
@@ -159,5 +165,6 @@ class ArticleItemWidget extends StatelessWidget {
     );
   }
 
-  TextStyle buildBottomTextStyle() => TextStyle(color: Colors.grey[500], fontSize: 13);
+  TextStyle buildBottomTextStyle() =>
+      TextStyle(color: Colors.grey[500], fontSize: 13);
 }

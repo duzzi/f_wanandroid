@@ -1,6 +1,6 @@
-# appp
+# f_wan
 
-A new Flutter application.
+A new Flutter wanandroid.
 
 ## Getting Started
 
