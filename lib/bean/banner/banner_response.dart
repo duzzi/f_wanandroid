@@ -1,5 +1,5 @@
-import 'package:appp/bean/banner/banner_item.dart';
-import 'package:appp/bean/base/base_entity.dart';
+import 'banner_item.dart';
+import 'package:f_wan/bean/base/base_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 

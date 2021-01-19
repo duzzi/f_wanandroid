@@ -1,5 +1,5 @@
-import 'package:appp/bean/base/base_entity.dart';
-import 'package:appp/bean/friend/friend_url_item.dart';
+import 'package:f_wan/bean/base/base_entity.dart';
+import 'package:f_wan/bean/friend/friend_url_item.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'friend_url_response.g.dart';

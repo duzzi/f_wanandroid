@@ -1,15 +1,17 @@
 import 'dart:math';
 
-import 'package:appp/api/api_service.dart';
-import 'package:appp/bean/article/article_item.dart';
-import 'package:appp/bean/article/article_model.dart';
-import 'package:appp/bean/banner/banner_item.dart';
-import 'package:appp/bean/friend/friend_url_item.dart';
-import 'package:appp/page/base/base_state.dart';
-import 'package:appp/page/home/article_item_widget.dart';
-import 'package:appp/page/widget/refresh_header_footer.dart';
-import 'package:appp/utils/route_helper.dart';
-import 'package:appp/utils/utils.dart';
+import 'package:f_wan/api/api_service.dart';
+import 'package:f_wan/bean/article/article_item.dart';
+import 'package:f_wan/bean/article/article_model.dart';
+import 'package:f_wan/bean/banner/banner_item.dart';
+import 'package:f_wan/bean/friend/friend_url_item.dart';
+import 'package:f_wan/page/base/base_state.dart';
+import 'package:f_wan/page/home/article_item_widget.dart';
+import 'package:f_wan/page/widget/refresh_header_footer.dart';
+import 'package:f_wan/page/widget/state_page.dart';
+import 'package:f_wan/utils/route_helper.dart';
+import 'package:f_wan/utils/utils.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
@@ -47,14 +49,32 @@ class HomePageStatefulWidget extends BaseState<HomePage> {
   void initScrollController() {
     _scrollController.addListener(() {
       _offset = _scrollController.offset;
-      // LogUtil.v('offset: $offset');
-      setState(() {
-        if (_offset >= 0) {
-          _alpha = min(_offset, 255) / 255.0;
-        } else {
-          _alpha = 0;
+      // LogUtil.v('offset: $_offset');
+      if (_offset > 0) {
+        if (_offset > 256 && _alpha == 1) {
+          //避免无用setState，否则容易造成列表滑动不流畅
+          return;
         }
-      });
+        var nowAlpha =
+            double.parse((min(_offset, 255) / 255.0).toStringAsFixed(2));
+        // LogUtil.v("nowAlpha ${nowAlpha.toStringAsFixed(2)}");
+        if (((nowAlpha.abs() - _alpha.abs()).abs() <= 0.03)) {
+          return;
+        }
+        setState(() {
+          _alpha = nowAlpha;
+        });
+        // LogUtil.v("_alpha $_alpha");
+      } else {
+        // LogUtil.v("_alpha $_alpha");
+        if (_alpha == 0) {
+          //避免无用setState，否则容易造成列表滑动不流畅
+          return;
+        }
+        setState(() {
+          _alpha = 0;
+        });
+      }
     });
   }
 
@@ -63,6 +83,7 @@ class HomePageStatefulWidget extends BaseState<HomePage> {
       LogUtil.v("$data");
       if (data is List<BannerItem>) {
         setState(() {
+          _banners = [];
           _banners.clear();
           _banners.addAll(data);
         });
@@ -92,30 +113,13 @@ class HomePageStatefulWidget extends BaseState<HomePage> {
         refresh(); //下拉刷新
       },
       onLoad: () async {
-        loadNextPage();
+        requestArticleList(false);
       },
-      emptyWidget: (_banners.length + _friendUrls.length + _list.length) == 0
-          ? Container(
-              height: double.infinity,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Expanded(
-                    child: SizedBox(),
-                    flex: 2,
-                  ),
-                  Text(
-                    '暂无数据',
-                    style: TextStyle(fontSize: 16.0, color: Colors.grey[400]),
-                  ),
-                  Expanded(
-                    child: SizedBox(),
-                    flex: 3,
-                  ),
-                ],
-              ),
-            )
+      // firstRefresh: true,
+      // firstRefreshWidget: LoadingPage(),
+      emptyWidget: (_banners.length + _friendUrls.length + _list.length) == 0 &&
+              pageIndex >= 1
+          ? EmptyPage()
           : null,
     ));
   }
@@ -142,7 +146,7 @@ class HomePageStatefulWidget extends BaseState<HomePage> {
                       child: Icon(Icons.adb),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 4,right: 4),
+                      padding: const EdgeInsets.only(left: 4, right: 4),
                       child: Text(
                         '${item.name}',
                         maxLines: 1,
@@ -165,10 +169,10 @@ class HomePageStatefulWidget extends BaseState<HomePage> {
   }
 
   void refresh() {
-    pageIndex = 0;
+    print('HomePageStatefulWidget.refresh request');
     requestBanner();
     requestUrl();
-    requestArticleList();
+    requestArticleList(true);
   }
 
   SliverList buildBanner() {
@@ -178,15 +182,15 @@ class HomePageStatefulWidget extends BaseState<HomePage> {
         color: Colors.white24,
         height: _banners.length == 0 ? 0 : 200,
         child: Swiper(
-          autoplay: true,
+          autoplay: _banners.length == 0 ? false : true,
           pagination: SwiperPagination(),
           transformer: ScaleAndFadeTransformer(),
           itemCount: _banners.length,
           itemBuilder: (context, index) {
             BannerItem item = _banners[index];
             return GestureDetector(
-              child: Image.network(
-                item.imagePath,
+              child: CachedNetworkImage(
+                imageUrl: item.imagePath,
                 fit: BoxFit.fitWidth,
               ),
               onTap: () {
@@ -251,15 +255,18 @@ class HomePageStatefulWidget extends BaseState<HomePage> {
     return items;
   }
 
-  void requestArticleList() {
-    if (loading || !mounted || !hasMore) return;
+  void requestArticleList(bool refresh) {
+    print('HomePageStatefulWidget.requestArticleList');
+    if (loading || !mounted || (!hasMore && !refresh)) return;
+    if (refresh) pageIndex = 0;
     loading = true;
     Future<Response> future = ApiService.getHomeList(pageIndex);
     future.then((response) {
       ArticleModel articleModel = ArticleModel.fromJson(response.data['data']);
       if (mounted) {
         setState(() {
-          if (pageIndex == 0) {
+          if (pageIndex == 0 || refresh) {
+            pageIndex = 0;
             _list.clear();
           }
           _list.addAll(articleModel.datas);
@@ -271,10 +278,6 @@ class HomePageStatefulWidget extends BaseState<HomePage> {
       print('$error');
     });
     loading = false;
-  }
-
-  void loadNextPage() {
-    requestArticleList();
   }
 
   void requestUrl() {

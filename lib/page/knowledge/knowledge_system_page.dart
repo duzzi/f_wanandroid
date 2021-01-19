@@ -1,11 +1,11 @@
-import 'package:appp/api/api_service.dart';
-import 'package:appp/bean/article/article_type.dart';
-import 'package:appp/bean/knowledge/knowledge_system_model.dart';
-import 'package:appp/bean/knowledge/knowledge_system_response.dart';
-import 'package:appp/page/project/article_list_page.dart';
-import 'package:appp/page/widget/flow_item_widget.dart';
-import 'package:appp/page/widget/refresh_header_footer.dart';
-import 'package:appp/utils/route_helper.dart';
+import 'package:f_wan/api/api_service.dart';
+import 'package:f_wan/bean/article/article_type.dart';
+import 'package:f_wan/bean/knowledge/knowledge_system_model.dart';
+import 'package:f_wan/bean/knowledge/knowledge_system_response.dart';
+import 'package:f_wan/page/project/article_list_page.dart';
+import 'package:f_wan/page/widget/flow_item_widget.dart';
+import 'package:f_wan/page/widget/refresh_header_footer.dart';
+import 'package:f_wan/utils/route_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 

@@ -14,9 +14,12 @@ class RoundCornerButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Ink(
       decoration: BoxDecoration(
-          color: Theme
-              .of(context)
-              .primaryColor,
+          // color: Theme
+          //     .of(context)
+          //     .primaryColor,
+          gradient: LinearGradient(
+            colors: [ const Color(0xff03a9f4),const Color(0xff0288d1),]
+          ),
           borderRadius: BorderRadius.all(Radius.circular(30.0))),
       child: InkWell(
         child: Container(

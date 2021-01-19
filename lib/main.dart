@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:appp/page/splash/splash_page.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'api/api_service.dart';
-import 'page/main_page.dart';
+import 'page/splash/splash_page.dart';
 import 'utils/utils.dart';
 
 void main() {
@@ -39,12 +38,10 @@ class MyApp extends StatelessWidget {
       ),
       home: SplashPage(),
       localizationsDelegates: [
-        // <-- 添加
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
       supportedLocales: [
-        // <-- 添加语言包
         const Locale('zh', 'CH'),
       ],
     );

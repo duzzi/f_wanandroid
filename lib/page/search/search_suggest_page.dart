@@ -1,10 +1,11 @@
-import 'package:appp/api/api_service.dart';
-import 'package:appp/bean/search/hot_key.dart';
-import 'package:appp/bean/search/hot_key_rsp.dart';
-import 'package:appp/page/search/search_bar_delegate.dart';
-import 'package:appp/page/widget/flow_item_widget.dart';
-import 'package:appp/utils/sp.dart';
+import 'package:f_wan/api/api_service.dart';
+import 'package:f_wan/bean/search/hot_key.dart';
+import 'package:f_wan/bean/search/hot_key_rsp.dart';
+import 'package:f_wan/page/widget/flow_item_widget.dart';
+import 'package:f_wan/utils/sp.dart';
 import 'package:flutter/material.dart';
+
+import 'search_bar_delegate.dart';
 
 class SearchSuggestPage extends StatefulWidget {
   final SearchBarDelegate searchBarDelegate;

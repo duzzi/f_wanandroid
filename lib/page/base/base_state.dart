@@ -1,4 +1,4 @@
-import 'package:appp/page/widget/loading_dialog.dart';
+import 'package:f_wan/page/widget/loading_dialog.dart';
 import 'package:flutter/material.dart';
 
 abstract class BaseState<T extends StatefulWidget> extends State<T> {

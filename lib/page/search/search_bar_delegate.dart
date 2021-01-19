@@ -1,7 +1,7 @@
-import 'package:appp/bean/article/article_type.dart';
-import 'package:appp/page/project/article_list_page.dart';
-import 'package:appp/page/search/search_suggest_page.dart';
-import 'package:appp/utils/sp.dart';
+import 'package:f_wan/bean/article/article_type.dart';
+import 'package:f_wan/page/project/article_list_page.dart';
+import 'package:f_wan/page/search/search_suggest_page.dart';
+import 'package:f_wan/utils/sp.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 

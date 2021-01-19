@@ -1,5 +1,5 @@
-import 'package:appp/bean/base/base_entity.dart';
-import 'package:appp/bean/project/project_type_item.dart';
+import 'package:f_wan/bean/base/base_entity.dart';
+import 'package:f_wan/bean/project/project_type_item.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'project_type_response.g.dart';

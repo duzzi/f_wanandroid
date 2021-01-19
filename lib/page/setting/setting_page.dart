@@ -1,7 +1,8 @@
-import 'package:appp/api/api_service.dart';
-import 'package:appp/global/app_const.dart';
-import 'package:appp/manager/account_manager.dart';
-import 'package:appp/page/base/base_state.dart';
+import 'package:f_wan/api/api_service.dart';
+import 'package:f_wan/global/app_const.dart';
+import 'package:f_wan/manager/account_manager.dart';
+import 'package:f_wan/page/base/base_state.dart';
+import 'package:f_wan/page/widget/round_corner_button.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 
@@ -33,32 +34,16 @@ class _SettingPageState extends BaseState<SettingPage> {
             Container(
               height: !_isLogin ? 0 : 80,
               child: Center(
-                child: Ink(
-                  decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor,
-                      borderRadius: BorderRadius.all(Radius.circular(30.0))),
-                  child: InkWell(
-                    child: Container(
-                      padding: const EdgeInsets.fromLTRB(100, 10, 100, 10),
-                      child: Text(
-                        '退出登录',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.white, fontSize: 18),
-                      ),
-                    ),
-                    borderRadius: BorderRadius.all(Radius.circular(30)),
-                    onTap: () {
-                      showLoadingDialog(context, text: "退出登录中...");
-                      ApiService.logout((success, value) {
-                        LogUtil.v('退出登录 $success');
-                        dismissLoadingDialog(context);
-                        setState(() {
-                          _isLogin = AccountManager.getInstance().isLogin();
-                        });
-                      });
-                    },
-                  ),
-                ),
+                child: RoundCornerButton("退出登录", () {
+                  showLoadingDialog(context, text: "退出登录中...");
+                  ApiService.logout((success, value) {
+                    LogUtil.v('退出登录 $success');
+                    dismissLoadingDialog(context);
+                    setState(() {
+                      _isLogin = AccountManager.getInstance().isLogin();
+                    });
+                  });
+                }),
               ),
             )
           ],

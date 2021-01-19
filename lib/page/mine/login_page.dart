@@ -1,7 +1,7 @@
-import 'package:appp/api/api_service.dart';
-import 'package:appp/page/base/base_state.dart';
-import 'package:appp/page/widget/round_corner_button.dart';
-import 'package:appp/utils/toast_utils.dart';
+import 'package:f_wan/api/api_service.dart';
+import 'package:f_wan/page/base/base_state.dart';
+import 'package:f_wan/page/widget/round_corner_button.dart';
+import 'package:f_wan/utils/toast_utils.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 

@@ -1,8 +1,9 @@
 
 
-import 'package:appp/bean/base/base_entity.dart';
-import 'package:appp/bean/login/account_info.dart';
+import 'package:f_wan/bean/base/base_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import 'account_info.dart';
 
 part 'account_info_response.g.dart';
 

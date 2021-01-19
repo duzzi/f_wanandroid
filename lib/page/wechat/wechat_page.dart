@@ -1,10 +1,10 @@
-import 'package:appp/api/api_service.dart';
-import 'package:appp/bean/article/article_type.dart';
-import 'package:appp/bean/wechat/wechat_chapter.dart';
-import 'package:appp/bean/wechat/wechat_chapter_response.dart';
-import 'package:appp/global/app_const.dart';
-import 'package:appp/page/project/article_list_page.dart';
-import 'package:appp/utils/string_util.dart';
+import 'package:f_wan/api/api_service.dart';
+import 'package:f_wan/bean/article/article_type.dart';
+import 'package:f_wan/bean/wechat/wechat_chapter.dart';
+import 'package:f_wan/bean/wechat/wechat_chapter_response.dart';
+import 'package:f_wan/global/app_const.dart';
+import 'package:f_wan/page/project/article_list_page.dart';
+import 'package:f_wan/utils/string_util.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 

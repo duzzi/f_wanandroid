@@ -1,4 +1,4 @@
-import 'package:appp/bean/article/article_tag.dart';
+import 'package:f_wan/bean/article/article_tag.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'article_item.g.dart';

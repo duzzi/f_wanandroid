@@ -1,13 +1,13 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:appp/api/api_service.dart';
-import 'package:appp/bean/article/article_item.dart';
-import 'package:appp/event/event_bus.dart';
-import 'package:appp/event/event_const.dart';
-import 'package:appp/manager/account_manager.dart';
-import 'package:appp/utils/route_helper.dart';
-import 'package:appp/utils/string_util.dart';
+import 'package:f_wan/api/api_service.dart';
+import 'package:f_wan/bean/article/article_item.dart';
+import 'package:f_wan/event/event_bus.dart';
+import 'package:f_wan/event/event_const.dart';
+import 'package:f_wan/manager/account_manager.dart';
+import 'package:f_wan/utils/route_helper.dart';
+import 'package:f_wan/utils/string_util.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';

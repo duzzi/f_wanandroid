@@ -1,9 +1,9 @@
-import 'package:appp/utils/route_helper.dart';
-import 'package:appp/utils/string_util.dart';
+import 'package:f_wan/utils/route_helper.dart';
+import 'package:f_wan/utils/string_util.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
-import 'package:appp/bean/article/article_item.dart';
+import 'package:f_wan/bean/article/article_item.dart';
 
 class ArticleItemWidget extends StatelessWidget {
   final ArticleItem _item;

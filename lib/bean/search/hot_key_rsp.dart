@@ -1,5 +1,5 @@
-import 'package:appp/bean/base/base_entity.dart';
-import 'package:appp/bean/search/hot_key.dart';
+import 'package:f_wan/bean/base/base_entity.dart';
+import 'package:f_wan/bean/search/hot_key.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'hot_key_rsp.g.dart';

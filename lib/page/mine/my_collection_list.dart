@@ -1,5 +1,5 @@
-import 'package:appp/bean/article/article_type.dart';
-import 'package:appp/page/project/article_list_page.dart';
+import 'package:f_wan/bean/article/article_type.dart';
+import 'package:f_wan/page/project/article_list_page.dart';
 import 'package:flutter/material.dart';
 
 class MyCollectionListPage extends StatefulWidget {

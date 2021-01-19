@@ -1,4 +1,4 @@
-import 'package:appp/bean/login/account_info.dart';
+import 'package:f_wan/bean/login/account_info.dart';
 import 'package:flustars/flustars.dart';
 
 class Sp {

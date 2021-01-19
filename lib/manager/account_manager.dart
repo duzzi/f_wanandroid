@@ -1,5 +1,5 @@
-import 'package:appp/bean/login/account_info.dart';
-import 'package:appp/utils/sp.dart';
+import 'package:f_wan/bean/login/account_info.dart';
+import 'package:f_wan/utils/sp.dart';
 
 class AccountManager extends IAccountManager {
   static AccountManager _accountManager;

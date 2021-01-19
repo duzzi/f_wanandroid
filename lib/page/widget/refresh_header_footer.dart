@@ -9,8 +9,10 @@ ClassicalHeader buildClassicalHeader() {
       refreshFailedText: '刷新失败',
       refreshedText: '刷新完毕',
       refreshReadyText: '释放刷新',
-      infoText: '更新于 ${DateUtil.formatDate(DateTime.now(), format: DateFormats.h_m_s)}',
-      infoColor: Colors.black54);
+      infoText:
+          '更新于 ${DateUtil.formatDate(DateTime.now(), format: DateFormats.h_m_s)}',
+      infoColor: Colors.black54,
+      enableHapticFeedback: false);
 }
 
 ClassicalFooter buildClassicalFooter() {
@@ -19,6 +21,8 @@ ClassicalFooter buildClassicalFooter() {
       loadedText: '加载完毕',
       loadReadyText: '',
       loadText: '下拉加载',
-      infoText: '更新于 ${DateUtil.formatDate(DateTime.now(), format: DateFormats.h_m_s)}',
-      infoColor: Colors.black54);
+      infoText:
+          '更新于 ${DateUtil.formatDate(DateTime.now(), format: DateFormats.h_m_s)}',
+      infoColor: Colors.black54,
+      enableHapticFeedback: false);
 }

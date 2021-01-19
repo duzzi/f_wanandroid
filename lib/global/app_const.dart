@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class AppConst {
+  static const int countDownTime = 3000;
+  static const int oneSeconds = 1000;
+
   static const List<IconData> mainBottomIcons = [
     Icons.home,
     Icons.phone_android,

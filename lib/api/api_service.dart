@@ -1,16 +1,16 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:appp/api/api_url.dart';
-import 'package:appp/bean/banner/banner_response.dart';
-import 'package:appp/bean/friend/friend_url_response.dart';
-import 'package:appp/bean/login/account_info_response.dart';
-import 'package:appp/utils/sp.dart';
+import 'package:f_wan/bean/banner/banner_response.dart';
+import 'package:f_wan/bean/friend/friend_url_response.dart';
+import 'package:f_wan/bean/login/account_info_response.dart';
+import 'package:f_wan/utils/sp.dart';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:path_provider/path_provider.dart';
 
+import 'api_url.dart';
 import 'custom_interceptor.dart';
 
 class ApiService {

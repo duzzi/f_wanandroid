@@ -1,5 +1,5 @@
-import 'package:appp/bean/base/base_entity.dart';
-import 'package:appp/bean/wechat/wechat_chapter.dart';
+import 'package:f_wan/bean/base/base_entity.dart';
+import 'package:f_wan/bean/wechat/wechat_chapter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'wechat_chapter_response.g.dart';

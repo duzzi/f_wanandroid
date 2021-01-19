@@ -1,12 +1,13 @@
 import 'dart:ui';
 
-import 'package:appp/global/app_const.dart';
-import 'package:appp/manager/account_manager.dart';
+import 'package:f_wan/global/app_const.dart';
+import 'package:f_wan/manager/account_manager.dart';
+import 'example/count_down_progress_example.dart';
 import 'example/permission_example.dart';
 import 'file:///E:/FlutterProjects/f_wanandroid/lib/page/mine/example/web_example_page.dart';
-import 'package:appp/page/setting/setting_page.dart';
-import 'package:appp/utils/route_helper.dart';
-import 'package:appp/utils/toast_utils.dart';
+import 'package:f_wan/page/setting/setting_page.dart';
+import 'package:f_wan/utils/route_helper.dart';
+import 'package:f_wan/utils/toast_utils.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -175,6 +176,9 @@ class _MyPageState extends State<MinePage> with WidgetsBindingObserver {
 
     list.add(buildItemWidget("PermissionPage", Icons.lock_open,() {
       RouteHelper.openPage(context, PermissionPage());
+    }));
+    list.add(buildItemWidget("CountDownPage", Icons.lock_open,() {
+      RouteHelper.openPage(context, CountDownPage());
     }));
     for (int i = 0; i < 20; i++) {
       list.add(buildItemWidget("item $i",Icons.android_outlined, () {}));

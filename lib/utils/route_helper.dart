@@ -1,7 +1,7 @@
-import 'package:appp/bean/article/article_item.dart';
-import 'package:appp/page/mine/login_page.dart';
-import 'package:appp/page/search/search_bar_delegate.dart';
-import 'package:appp/page/web/webview_page.dart';
+import 'package:f_wan/bean/article/article_item.dart';
+import 'package:f_wan/page/mine/login_page.dart';
+import 'package:f_wan/page/search/search_bar_delegate.dart';
+import 'package:f_wan/page/web/webview_page.dart';
 import 'package:flutter/material.dart';
 
 class RouteHelper {

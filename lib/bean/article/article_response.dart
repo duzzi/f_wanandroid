@@ -1,4 +1,4 @@
-import 'package:appp/bean/base/base_entity.dart';
+import 'package:f_wan/bean/base/base_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'article_model.dart';

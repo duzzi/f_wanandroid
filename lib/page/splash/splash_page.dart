@@ -1,11 +1,12 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:appp/page/main_page.dart';
-import 'package:appp/utils/toast_utils.dart';
+import 'package:f_wan/page/main_page.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
+
+import 'count_down_button.dart';
 
 class SplashPage extends StatefulWidget {
   @override
@@ -13,23 +14,24 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-  Timer _timer;
+  bool _showCountDown = false;
 
   @override
   void initState() {
     super.initState();
-    checkPermission();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      print("Frame has been rendered");
+      checkPermission();
+    });
   }
 
   @override
   void dispose() {
-    if (_timer.isActive) {
-      _timer.cancel();
-    }
     super.dispose();
   }
 
-  void toMainPage() {
+  toMainPage() {
+    print('_SplashPageState.toMainPage');
     Navigator.pushAndRemoveUntil(
       context,
       new MaterialPageRoute(builder: (context) => MainPage()),
@@ -39,20 +41,26 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Stack(
-        children:[
-          Center(
-            child: Image(
-              image: AssetImage("assets/images/ic_launcher.png"),
-              width: 50,
-              height: 50,
+    return Scaffold(
+      body: Container(
+        color: Colors.white,
+        child: Stack(
+          children: [
+            Center(
+              child: Image(
+                image: AssetImage("assets/images/ic_launcher.png"),
+                width: 50,
+                height: 50,
+              ),
             ),
-          ),
-
-
-        ],
+            _showCountDown
+                ? Container(
+                    alignment: Alignment.topRight,
+                    margin: EdgeInsets.only(top: 30,right: 16),
+                    child: CountDownButton(toMainPage))
+                : Container()
+          ],
+        ),
       ),
     );
   }
@@ -71,8 +79,9 @@ class _SplashPageState extends State<SplashPage> {
     });
     LogUtil.v('checkPermission: $statusMap');
     if (status == PermissionStatus.granted) {
-      _timer = Timer(Duration(seconds: 3), toMainPage);
-      ///todo 跳过按钮
+      setState(() {
+        _showCountDown = true;
+      });
     } else {
       exit(0);
     }
