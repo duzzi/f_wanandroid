@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:f_wan/global/app_const.dart';
 import 'package:f_wan/manager/account_manager.dart';
 import 'example/count_down_progress_example.dart';
+import 'example/location_example.dart';
 import 'example/permission_example.dart';
 import 'file:///E:/FlutterProjects/f_wanandroid/lib/page/mine/example/web_example_page.dart';
 import 'package:f_wan/page/setting/setting_page.dart';
@@ -162,7 +163,7 @@ class _MyPageState extends State<MinePage> with WidgetsBindingObserver {
 
   List<Widget> childrenItem() {
     List<Widget> list = [];
-    list.add(buildItemWidget('我的收藏',Icons.favorite, () {
+    list.add(buildItemWidget('我的收藏',Icons.favorite_outline, () {
       if (!isLogin()) {
         RouteHelper.openLoginPage(context);
         return;
@@ -179,6 +180,9 @@ class _MyPageState extends State<MinePage> with WidgetsBindingObserver {
     }));
     list.add(buildItemWidget("CountDownPage", Icons.lock_open,() {
       RouteHelper.openPage(context, CountDownPage());
+    }));
+    list.add(buildItemWidget("LocationExample", Icons.location_on_outlined,() {
+      RouteHelper.openPage(context, LocationExample());
     }));
     for (int i = 0; i < 20; i++) {
       list.add(buildItemWidget("item $i",Icons.android_outlined, () {}));

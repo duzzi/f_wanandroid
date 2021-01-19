@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
         android:usesCleartextTraffic="true"
@@ -49,5 +50,9 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <!-- 在这里设置android端ak -->
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="VSdW8FCbjnG3DEWrwcCLG6A0u4mlRvip" />
     </application>
 </manifest>

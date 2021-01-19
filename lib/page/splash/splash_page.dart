@@ -67,7 +67,7 @@ class _SplashPageState extends State<SplashPage> {
 
   Future<void> checkPermission() async {
     Map<Permission, PermissionStatus> statusMap = await [
-      // Permission.location,
+      Permission.location,
       Permission.storage,
     ].request();
     var status = PermissionStatus.granted;

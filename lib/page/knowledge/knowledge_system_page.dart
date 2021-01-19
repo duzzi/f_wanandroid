@@ -1,8 +1,6 @@
 import 'package:f_wan/api/api_service.dart';
-import 'package:f_wan/bean/article/article_type.dart';
 import 'package:f_wan/bean/knowledge/knowledge_system_model.dart';
 import 'package:f_wan/bean/knowledge/knowledge_system_response.dart';
-import 'package:f_wan/page/project/article_list_page.dart';
 import 'package:f_wan/page/widget/flow_item_widget.dart';
 import 'package:f_wan/page/widget/refresh_header_footer.dart';
 import 'package:f_wan/utils/route_helper.dart';

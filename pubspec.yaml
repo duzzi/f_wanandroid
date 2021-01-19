@@ -49,8 +49,9 @@ dependencies:
   path_provider: ^1.6.24
   #权限
   permission_handler: ^5.0.1+1
-  #
-  event_bus: ^1.1.1
+  #百度地图
+  flutter_bmflocation: ^1.0.3
+
   #flutter_vector_icons: ^0.2.1
 
 

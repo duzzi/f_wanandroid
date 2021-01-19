@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dio/dio.dart';
 import 'package:f_wan/api/api_service.dart';
 import 'package:f_wan/bean/article/article_item.dart';
 import 'package:f_wan/bean/article/article_model.dart';
@@ -11,8 +13,6 @@ import 'package:f_wan/page/widget/refresh_header_footer.dart';
 import 'package:f_wan/page/widget/state_page.dart';
 import 'package:f_wan/utils/route_helper.dart';
 import 'package:f_wan/utils/utils.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -101,27 +101,28 @@ class HomePageStatefulWidget extends BaseState<HomePage> {
   Scaffold buildList() {
     return Scaffold(
         body: EasyRefresh.custom(
-      header: buildClassicalHeader(),
-      footer: buildClassicalFooter(),
-      slivers: [
-        buildBanner(),
-        buildGrid(),
-        SliverList(delegate: SliverChildListDelegate(createArticleItems())),
-      ],
-      scrollController: _scrollController,
-      onRefresh: () async {
-        refresh(); //下拉刷新
-      },
-      onLoad: () async {
-        requestArticleList(false);
-      },
-      // firstRefresh: true,
-      // firstRefreshWidget: LoadingPage(),
-      emptyWidget: (_banners.length + _friendUrls.length + _list.length) == 0 &&
-              pageIndex >= 1
-          ? EmptyPage()
-          : null,
-    ));
+          header: buildClassicalHeader(),
+          footer: buildClassicalFooter(),
+          slivers: [
+            buildBanner(),
+            buildGrid(),
+            SliverList(delegate: SliverChildListDelegate(createArticleItems())),
+          ],
+          scrollController: _scrollController,
+          onRefresh: () async {
+            refresh(); //下拉刷新
+          },
+          onLoad: () async {
+            requestArticleList(false);
+          },
+          // firstRefresh: true,
+          // firstRefreshWidget: LoadingPage(),
+          emptyWidget:
+              (_banners.length + _friendUrls.length + _list.length) == 0 &&
+                      pageIndex >= 1
+                  ? EmptyPage()
+                  : null,
+        ));
   }
 
   SliverGrid buildGrid() {

@@ -8,7 +8,6 @@ import 'package:f_wan/page/wechat/wechat_page.dart';
 import 'package:f_wan/utils/toast_utils.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'home/home_page.dart';
 import 'knowledge/knowledge_system_page.dart';
