@@ -5,7 +5,6 @@ import 'package:f_wan/manager/account_manager.dart';
 import 'example/count_down_progress_example.dart';
 import 'example/location_example.dart';
 import 'example/permission_example.dart';
-import 'file:///E:/FlutterProjects/f_wanandroid/lib/page/mine/example/web_example_page.dart';
 import 'package:f_wan/page/setting/setting_page.dart';
 import 'package:f_wan/utils/route_helper.dart';
 import 'package:f_wan/utils/toast_utils.dart';
@@ -13,6 +12,7 @@ import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
+import 'example/web_example_page.dart';
 import 'my_collection_list.dart';
 
 class MinePage extends StatefulWidget {
