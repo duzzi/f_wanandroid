@@ -1,6 +1,5 @@
 # f_wan
-
-A new Flutter wanandroid.
+Flutter wanandroid.
 
 ## Getting Started
 
