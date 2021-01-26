@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:f_wan/page/mine/example/location_example.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,10 +12,10 @@ import 'page/splash/splash_page.dart';
 import 'utils/utils.dart';
 
 void main() {
-    ApiService.init();
-    LogUtil.init(tag: "flutter", isDebug: Utils.isDebug());
-    runApp(MyApp());
-    initStatusBar();
+  ApiService.init();
+  LogUtil.init(tag: "flutter", isDebug: Utils.isDebug());
+  runApp(MyApp());
+  initStatusBar();
 }
 
 void initStatusBar() {
@@ -44,8 +45,10 @@ class MyApp extends StatelessWidget {
       supportedLocales: [
         const Locale('zh', 'CH'),
       ],
+      routes: {
+        "SplashPage": (_) => SplashPage(),
+        "LocationExample": (_) => LocationExample(),
+      },
     );
   }
 }
-
-
