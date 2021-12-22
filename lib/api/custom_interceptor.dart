@@ -5,20 +5,20 @@ import 'package:flustars/flustars.dart';
 
 class CustomInterceptorsWrapper extends InterceptorsWrapper {
   @override
-  Future onRequest(RequestOptions options) {
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     LogUtil.v('[${options.path}]request start');
-    return super.onRequest(options);
+    super.onRequest(options, handler);
   }
 
   @override
-  Future onResponse(Response response) {
-    LogUtil.e('[${response.request?.path}]response: ${response.statusCode} ${response.data}');
-    return super.onResponse(response);
+  void onResponse(Response response, ResponseInterceptorHandler handler) {
+    LogUtil.d('[${response.requestOptions.path}]response: ${response.statusCode} ${response.data}');
+    super.onResponse(response, handler);
   }
 
   @override
-  Future onError(DioError error) {
-    LogUtil.e('[${error.response?.request?.path}]error: ${error.response?.statusCode}');
-    return super.onError(error);
+  void onError(DioError err, ErrorInterceptorHandler handler) {
+    LogUtil.e('[${err.response?.requestOptions?.path}]error: ${err.response?.statusCode}');
+    super.onError(err, handler);
   }
 }

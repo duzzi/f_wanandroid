@@ -63,7 +63,7 @@ class _PermissionState extends State<PermissionWidget> {
   _PermissionState(this._permission);
 
   final Permission _permission;
-  PermissionStatus _permissionStatus = PermissionStatus.undetermined;
+  PermissionStatus _permissionStatus;
 
   @override
   void initState() {

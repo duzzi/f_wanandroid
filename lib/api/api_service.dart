@@ -68,8 +68,7 @@ class ApiService {
 
   static Future<Response> getSearchList(int pageIndex, String word) async {
     return await dio.post('${ApiUrl.search}$pageIndex/json',
-        data: FormData.fromMap({'k': word}),
-        options: getOptions());
+        data: FormData.fromMap({'k': word}), options: getOptions());
   }
 
   static Future<Response> getKnowledgeSystem() async {
@@ -122,7 +121,7 @@ class ApiService {
     if (_cookieJar == null) {
       Directory appDocDir = await getApplicationDocumentsDirectory();
       String appDocPath = appDocDir.path;
-      _cookieJar = PersistCookieJar(dir: "$appDocPath/.cookies/");
+      _cookieJar = PersistCookieJar();
       print('ApiService.getCookieJar $_cookieJar');
     }
     return _cookieJar;
@@ -138,7 +137,7 @@ class ApiService {
       //登录成功
       print('ApiService.handleLoginData _cookieJar $_cookieJar');
       List<Cookie> cookies =
-          _cookieJar?.loadForRequest(Uri.parse(ApiUrl.baseUrl));
+          await _cookieJar?.loadForRequest(Uri.parse(ApiUrl.baseUrl));
       if (cookies != null) {
         for (int i = 0; i < cookies.length; i++) {
           var element = cookies[i];
